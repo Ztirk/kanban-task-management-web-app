@@ -5,9 +5,10 @@ interface Props {
   value: string;
   active: boolean;
   children: ReactNode;
+  required?: boolean;
 }
 
-export default function Selector({ value, active, children }: Props) {
+export default function Selector({ value, active, children, required }: Props) {
   const [toggleSelect, setToggleSelect] = useState<boolean>(false);
 
   useEffect(() => {
@@ -37,10 +38,19 @@ export default function Selector({ value, active, children }: Props) {
       >
         <div
           className={`h-[40px]
-                        border border-[#828FA3]/25
+                        border 
                         flex justify-between items-center
                         px-3
                         rounded-md
+                        ${
+                          required
+                            ? `border-red
+                                after:content-["Can't_be_empty"]
+                                after:absolute after:right-8
+                                after:text-red
+                            `
+                            : "border-[#828FA3]/25"
+                        }
                         `}
         >
           <p>{value}</p>

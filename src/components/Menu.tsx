@@ -1,9 +1,5 @@
 import boardImg from "assets/icon-board.svg";
-import {
-  useEffect,
-  useState,
-  MouseEvent,
-} from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import { getBoardNames } from "../apis/get";
 import { BoardNames } from "../interfaces/types";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,11 +19,13 @@ export default function Menu() {
 
   useEffect(() => {
     if (boards && !board_id) {
-      setSelectedBoard(boards.Items[0].board_id.S);
-      navigate(`/board/${boards.Items[0].board_id.S}`);
-    } else if (boards && board_id) {
-      setSelectedBoard(board_id);
-      navigate(`/board/${board_id}`);
+      if (board_id) {
+        setSelectedBoard(board_id);
+        navigate(`/board/${board_id}`);
+      } else {
+        setSelectedBoard(boards.Items[0].board_id.S);
+        navigate(`/board/${boards.Items[0].board_id.S}`);
+      }
     }
   }, [boards, board_id, navigate]);
 

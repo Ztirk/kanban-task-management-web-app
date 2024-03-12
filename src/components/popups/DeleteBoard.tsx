@@ -3,7 +3,6 @@ import Button from "../Button";
 import Container from "../layouts/Container";
 import { RootState } from "../../store/store";
 import { deleteBoard } from "../../apis/delete";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
   onCloseAll: () => void;
@@ -12,12 +11,10 @@ interface Props {
 export default function DeleteBoard({ onCloseAll }: Props) {
   const board = useSelector((state: RootState) => state.board);
 
-  const navigate = useNavigate();
-
   const handleDeleteBoard = async () => {
-    await deleteBoard(board.board_id.S);
+    const result = await deleteBoard(board.board_id.S);
     onCloseAll();
-    navigate("/");
+    if (result) location.reload();
   };
 
   return (
