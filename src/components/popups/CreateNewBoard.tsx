@@ -17,6 +17,7 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
   const [newBoard, setNewBoard] = useState<NewBoardT>({
     board_id: "",
     board_name: "",
+    created_date: "",
     column: [],
   });
 
@@ -25,6 +26,7 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
       setNewBoard({
         board_id: uuidv4(),
         board_name: "",
+        created_date: new Date().toISOString(),
         column: [],
       });
   }, [active]);
@@ -72,8 +74,8 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
   };
 
   const handleCreateNewBoard = async () => {
-    onCancel();
     const result = await postNewBoard(newBoard);
+    onCancel();
     if (result) location.reload();
   };
 
@@ -110,7 +112,6 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
                       flex flex-col gap-2
         `}
           >
-            
             {newBoard.column.map((c, i) => (
               <ReuseList
                 id={c.column_id}

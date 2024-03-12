@@ -9,6 +9,9 @@ const initialState: BoardDetails["Item"] = {
   board_name: {
     S: "",
   },
+  created_date: {
+    S: "",
+  },
   column: {
     L: [],
   },
@@ -144,9 +147,6 @@ export const boardSlice = createSlice({
     //     editingTask.M = { ...task.M };
     //   }
     // },
-    setDefaultBoard() {
-      return initialState;
-    },
   },
 });
 
@@ -155,7 +155,6 @@ export const {
   addNewColumnList,
   addNewTask,
   fetchBoard,
-  setDefaultBoard,
   setCheckedSubTask,
   changeTaskColumn,
   deleteTask,

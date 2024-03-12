@@ -7,6 +7,9 @@ export interface BoardNames {
     board_name: {
       S: string;
     };
+    created_date: {
+      S: string;
+    };
   }[];
 }
 
@@ -16,6 +19,9 @@ export interface BoardDetails {
       S: string;
     };
     board_name: {
+      S: string;
+    };
+    created_date: {
       S: string;
     };
     column: {
@@ -71,5 +77,6 @@ export interface BackDropT {
 export interface NewBoardT {
   board_id: string;
   board_name: string;
+  created_date: string;
   column: { column_id: string; column_name: string }[];
 }

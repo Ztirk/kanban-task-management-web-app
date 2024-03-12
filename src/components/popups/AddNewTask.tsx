@@ -13,7 +13,7 @@ import {
   setTaskId,
   setTaskName,
 } from "../../store/slices/taskSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from "../../store/store";
 import Selector from "../forms/Selector";
 import Option from "../forms/Option";
@@ -25,17 +25,29 @@ interface Props extends BackDropT {}
 export default function AddNewTask({ active, onCancel }: Props) {
   const task = useSelector((state: RootState) => state.task);
   const board = useSelector((state: RootState) => state.board);
+  const [required, setRequired] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (active) dispatch(setTaskId(uuidv4()));
+    if (active) {
+      setRequired(false);
+      dispatch(setTaskId(uuidv4()));
+    }
   }, [active, dispatch]);
 
   const handleCreateTask = () => {
-    dispatch(addNewTask([task.M, task.column_id]));
-    localStorage.put = true;
-    onCancel();
+    if (!task.column_id || !task.M.task_name.S) handleSetRequired();
+    else {
+      dispatch(addNewTask([task.M, task.column_id]));
+      localStorage.put = true;
+      onCancel();
+    }
+  };
+
+  const handleSetRequired = () => {
+    if (required) setRequired(false);
+    else setRequired(true);
   };
 
   return (
@@ -60,6 +72,7 @@ export default function AddNewTask({ active, onCancel }: Props) {
             placeholder="e.g. Take coffee break"
             action={setTaskName}
             value={task.M.task_name.S}
+            required={required && !task.M.task_name.S}
           />
         </Container>
         <Container inputNLabel>
@@ -77,7 +90,11 @@ export default function AddNewTask({ active, onCancel }: Props) {
         </Container>
         <Container inputNLabel>
           <Label label="Status" />
-          <Selector value={task.column_name} active={active}>
+          <Selector
+            value={task.column_name}
+            active={active}
+            required={!task.column_id && required}
+          >
             {board.column.L.map((c) => (
               <Option
                 id={c.M.column_id.S}
