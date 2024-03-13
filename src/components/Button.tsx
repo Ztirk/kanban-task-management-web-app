@@ -1,5 +1,7 @@
+import { ReactElement } from "react";
+
 interface Props {
-  value: string;
+  value: string | ReactElement;
   type:
     | "add-new-task"
     | "add-new-subtask"

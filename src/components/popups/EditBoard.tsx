@@ -13,6 +13,8 @@ import {
 } from "../../store/slices/boardSlice";
 import { putBoard } from "../../apis/put";
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
+import Spinning from "../loading/Spinning";
 
 interface Props {
   closeAll: () => void;
@@ -21,6 +23,7 @@ interface Props {
 const randomShit = ["Todo", "Doing", "Done"];
 
 export default function EditBoard({ closeAll }: Props) {
+  const [requesting, setRequesting] = useState<boolean>(false);
   const board = useSelector((state: RootState) => state.board);
   const dispatch = useDispatch();
 
@@ -28,9 +31,12 @@ export default function EditBoard({ closeAll }: Props) {
     dispatch(addNewColumnList(uuidv4()));
   };
 
-  const handleSaveChanges = () => {
-    putBoard(board);
+  const handleSaveChanges = async () => {
+    setRequesting(true);
+    await putBoard(board);
+    setRequesting(false);
     closeAll();
+    location.reload();
   };
 
   return (
@@ -38,7 +44,6 @@ export default function EditBoard({ closeAll }: Props) {
       className={`
                   h-[481px] w-[480px]
 
-    
   `}
       popUp
     >
@@ -81,7 +86,7 @@ export default function EditBoard({ closeAll }: Props) {
       </Container>
       <Button
         type="create-task"
-        value="Save Changes"
+        value={<>{requesting ? <Spinning /> : <></>} &nbsp;Save Changes</>}
         onClick={handleSaveChanges}
       />
     </Container>
