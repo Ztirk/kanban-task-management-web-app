@@ -8,12 +8,14 @@ import { v4 as uuidv4 } from "uuid";
 import ReuseList from "../forms/ReuseList";
 import Button from "../Button";
 import { postNewBoard } from "../../apis/post";
+import Spinning from "../loading/Spinning";
 
 const randomShit = ["Todo", "Doing", "Done"];
 
 interface Props extends BackDropT {}
 
 export default function CreateNewBoard({ active, onCancel }: Props) {
+  const [requesting, setRequesting] = useState<boolean>(false);
   const [newBoard, setNewBoard] = useState<NewBoardT>({
     board_id: "",
     board_name: "",
@@ -74,9 +76,11 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
   };
 
   const handleCreateNewBoard = async () => {
-    const result = await postNewBoard(newBoard);
+    setRequesting(true);
+    await postNewBoard(newBoard);
+    setRequesting(false);
     onCancel();
-    if (result) location.reload();
+    location.reload();
   };
 
   return (
@@ -132,7 +136,9 @@ export default function CreateNewBoard({ active, onCancel }: Props) {
         </Container>
         <Button
           type="create-task"
-          value="Create New Board"
+          value={
+            <>{requesting ? <Spinning /> : <></>} &nbsp;Create New Board</>
+          }
           onClick={handleCreateNewBoard}
         />
       </Container>

@@ -9,7 +9,6 @@ export default function Menu() {
   const [boards, setBoards] = useState<BoardNames>();
   const [selectedBoard, setSelectedBoard] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-
   const navigate = useNavigate();
   const { board_id } = useParams();
 
@@ -18,7 +17,7 @@ export default function Menu() {
   }, []);
 
   useEffect(() => {
-    if (boards && !board_id) {
+    if (boards) {
       if (board_id) {
         setSelectedBoard(board_id);
         navigate(`/board/${board_id}`);
