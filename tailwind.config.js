@@ -16,6 +16,9 @@ export default {
       red: "#EA5555",
       "red-hover": "#FF9898",
     },
+    screens: {
+      mobile: "655px",
+    },
     extend: {},
   },
   plugins: [],

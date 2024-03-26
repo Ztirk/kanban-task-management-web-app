@@ -1,10 +1,13 @@
-import { ReactNode } from "react";
+import { DragEvent, ReactNode } from "react";
 
 interface Props {
   columnName: string;
   noOfTasks: number;
   children: ReactNode;
   index: number;
+  onDrop: (e: DragEvent<HTMLDivElement>, endColumnId: string) => void;
+  onDragOver: (e: DragEvent<HTMLDivElement>) => void;
+  columnId: string;
 }
 
 export default function Column({
@@ -12,6 +15,9 @@ export default function Column({
   noOfTasks,
   children,
   index,
+  onDrop,
+  onDragOver,
+  columnId,
 }: Props) {
   const hexArray = [
     "1a2f7b",
@@ -117,7 +123,11 @@ export default function Column({
   ];
 
   return (
-    <div className={`flex flex-col gap-5 `}>
+    <div
+      className={`flex flex-col gap-5 `}
+      onDrop={(e) => onDrop(e, columnId)}
+      onDragOver={onDragOver}
+    >
       <div
         className={`flex items-center gap-2 
                     w-[280px]

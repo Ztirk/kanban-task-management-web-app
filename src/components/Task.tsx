@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { DragEvent, useState } from "react";
 import ViewTask from "./popups/ViewTask";
 import { BoardDetails } from "../interfaces/types";
 
 interface Props {
   task: BoardDetails["Item"]["column"]["L"][0]["M"]["task"]["L"][0]["M"];
   column: BoardDetails["Item"]["column"]["L"][0]["M"];
+  onDragStart: (
+    e: DragEvent<HTMLDivElement>,
+    task_id: string,
+    start_column_id: string
+  ) => void;
 }
 
-export default function Task({ task }: Props) {
+export default function Task({ task, column, onDragStart }: Props) {
   const [toggleViewTask, setToggleViewTask] = useState<boolean>(false);
   const [chosenTaskId, setChosenTaskId] = useState<string>("");
 
@@ -44,6 +49,8 @@ export default function Task({ task }: Props) {
                    hover:text-main-purple
                     `}
         onClick={() => handleChosenTask(task.task_id.S)}
+        draggable
+        onDragStart={(e) => onDragStart(e, task.task_id.S, column.column_id.S)}
       >
         <h4
           className={`heading-m 

@@ -14,7 +14,7 @@ export default function Sidebar() {
   };
 
   return (
-    <>
+    <div className="max-mobile:hidden">
       <Container
         className={`h-screen
                    pt-8 pb-10
@@ -70,6 +70,6 @@ export default function Sidebar() {
       >
         <img src={showSideBar} />
       </div>
-    </>
+    </div>
   );
 }

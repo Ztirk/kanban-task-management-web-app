@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { useEffect, useState } from "react";
+import { DragEvent, useEffect, useState } from "react";
 import { getBoardDetails } from "../apis/get";
 import Column from "../components/Column";
 import Task from "../components/Task";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { addNewColumnList } from "../store/slices/boardSlice";
+import { addNewColumnList, dragNDropTask } from "../store/slices/boardSlice";
 import { putBoard } from "../apis/put";
 import Button from "../components/Button";
 import { v4 as uuidv4 } from "uuid";
@@ -21,10 +21,6 @@ export default function Board() {
   useEffect(() => {
     if (board_id) getBoardDetails(board_id, setFetching);
   }, [board_id]);
-
-  // const handleDragTask = (e: DragEvent): void => {
-  //   console.log(e.dataTransfer);
-  // };
 
   useEffect(() => {
     if (board) {
@@ -48,6 +44,30 @@ export default function Board() {
     dispatch(addNewColumnList(uuidv4()));
   };
 
+  const handleDragStart = (
+    e: DragEvent<HTMLDivElement>,
+    task_id: string,
+    start_column_id: string
+  ): void => {
+    e.dataTransfer.setData("taskId", task_id);
+    e.dataTransfer.setData("startColumnId", start_column_id);
+  };
+
+  const handleOnDrop = (
+    e: DragEvent<HTMLDivElement>,
+    endColumnId: string
+  ): void => {
+    const taskId = e.dataTransfer.getData("taskId");
+    const startColumnId = e.dataTransfer.getData("startColumnId");
+
+    localStorage.put = true;
+    dispatch(dragNDropTask([startColumnId, endColumnId, taskId]));
+  };
+
+  const onDragOver = (e: DragEvent): void => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div
@@ -67,12 +87,19 @@ export default function Board() {
               {board.column.L.map((column, i) => (
                 <>
                   <Column
+                    columnId={column.M.column_id.S}
                     columnName={column.M.column_name.S}
                     noOfTasks={column.M.task.L.length}
                     index={i}
+                    onDrop={handleOnDrop}
+                    onDragOver={onDragOver}
                   >
                     {column.M.task.L.map((task) => (
-                      <Task task={task.M} column={column.M} />
+                      <Task
+                        task={task.M}
+                        column={column.M}
+                        onDragStart={handleDragStart}
+                      />
                     ))}
                   </Column>
                 </>
