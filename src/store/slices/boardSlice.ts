@@ -132,21 +132,26 @@ export const boardSlice = createSlice({
         M: newTask,
       });
     },
-    // editTask(
-    //   state,
-    //   action: PayloadAction<
-    //     [BoardDetails["Item"]["column"]["L"][0]["M"]["task"]["L"][0], string]
-    //   >
-    // ) {
-    //   const task = action.payload[0];
-    //   const columnId = action.payload[1];
-    //   const editingTask = state.column.L.find(
-    //     (c) => c.M.column_id.S == columnId
-    //   )?.M.task.L.find((t) => (t.M.task_id = task.M.task_id));
-    //   if (editingTask) {
-    //     editingTask.M = { ...task.M };
-    //   }
-    // },
+    dragNDropTask(state, action: PayloadAction<[string, string, string]>) {
+      const startColumnId = action.payload[0];
+      const endColumnId = action.payload[1];
+      const taskId = action.payload[2];
+
+      const startColumnIndex = state.column.L.findIndex(
+        (c) => c.M.column_id.S == startColumnId
+      );
+      const taskIndex = state.column.L[startColumnIndex].M.task.L.findIndex(
+        (t) => t.M.task_id.S == taskId
+      );
+      const dragingTask = state.column.L[startColumnIndex].M.task.L[taskIndex];
+
+      const endColumnIndex = state.column.L.findIndex(
+        (c) => c.M.column_id.S == endColumnId
+      );
+      state.column.L[endColumnIndex].M.task.L.push(dragingTask);
+
+      state.column.L[startColumnIndex].M.task.L.splice(taskIndex, 1);
+    },
   },
 });
 
@@ -163,6 +168,7 @@ export const {
   setBoardName,
   deleteColumn,
   setColumnName,
+  dragNDropTask,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

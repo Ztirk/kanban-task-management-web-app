@@ -9,6 +9,9 @@ import Backdrop from "./Backdrop";
 import EditBoard from "./popups/EditBoard";
 import DeleteBoard from "./popups/DeleteBoard";
 import { useParams } from "react-router-dom";
+import logo from "assets/logo-mobile.svg";
+import chevronDown from "assets/icon-chevron-down.svg";
+// import chevronUp from "assets/icon-chevron-up.svg";
 
 import { getBoardDetails } from "../apis/get";
 
@@ -85,7 +88,16 @@ export default function Header() {
                 flex items-center justify-between`}
         onClick={handleCloseBoardOption}
       >
-        <h1 className={`heading-xl`}>{board ? board.board_name.S : ""}</h1>
+        <h1
+          className={`heading-xl 
+                      max-mobile:flex max-mobile:gap-[16px]`}
+        >
+          <img src={logo} />
+          <div className={`max-mobile:flex max-mobile:items-center gap-[8px]`}>
+            {board ? board.board_name.S : ""}
+            <img src={chevronDown} />
+          </div>
+        </h1>
         <div
           className={`flex gap-5 items-center
                       relative
