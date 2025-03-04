@@ -51,7 +51,7 @@ export default function Sidebar() {
             className={`heading-m
                       text-medium-grey`}
           >
-            Hide Sidebar
+            Hide Sidebar eiei
           </div>
         </div>
       </Container>
