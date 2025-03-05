@@ -14,7 +14,6 @@ import chevronDown from "assets/icon-chevron-down.svg";
 import chevronUp from "assets/icon-chevron-up.svg";
 
 import { getBoardDetails } from "../apis/get";
-import Sidebar from "./Sidebar";
 import MiniSidebar from "./MiniSidebar";
 
 const useWindowSize = () => {
