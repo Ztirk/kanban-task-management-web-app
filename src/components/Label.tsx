@@ -5,7 +5,10 @@ interface Props {
 
 export default function Label({ label, htmlFor }: Props) {
   return (
-    <label className={`body-m text-medium-grey `} htmlFor={htmlFor}>
+    <label
+      className={`body-m text-medium-grey dark:text-white`}
+      htmlFor={htmlFor}
+    >
       {label}
     </label>
   );

@@ -43,11 +43,11 @@ export default function EditBoard({ closeAll }: Props) {
     <Container
       className={`
                   h-[481px] w-[480px]
-
+                  dark:bg-dark-grey
   `}
       popUp
     >
-      <h2 className={`heading-l`}>Edit Board</h2>
+      <h2 className={`heading-l dark:text-white`}>Edit Board</h2>
       <Container inputNLabel>
         <Label label="Name" htmlFor="name" />
         <Input
@@ -58,12 +58,13 @@ export default function EditBoard({ closeAll }: Props) {
         />
       </Container>
       <Container inputNLabel>
-        <Label label="Columns" />
+        <Label label="Board Columns" />
         <div
           className={`
                       overflow-y-auto
                       max-h-[160px]
                       flex flex-col gap-2
+                      
         `}
         >
           {board.column.L.map((c, i) => (

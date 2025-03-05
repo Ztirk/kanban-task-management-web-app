@@ -115,7 +115,7 @@ export default function ViewTask({ active, onCancel, taskId }: Props) {
         opacity={"opacity-50"}
       />
       {confirmDeleteTask ? (
-        <Container className={`w-[480px] h-[229px]`} popUp>
+        <Container className={`w-[480px] h-[229px] `} popUp>
           <h2
             className={`heading-l
                         text-red
@@ -150,7 +150,7 @@ export default function ViewTask({ active, onCancel, taskId }: Props) {
         />
       ) : (
         <Container
-          className={`h-[523px] w-[480px] 
+          className={`h-[523px] w-[480px] dark:bg-dark-grey
         
         ${active ? "" : "hidden"}`}
           popUp
@@ -168,7 +168,7 @@ export default function ViewTask({ active, onCancel, taskId }: Props) {
                         flex justify-between items-center
             `}
               >
-                <h2>{chosenTask.task_name.S}</h2>
+                <h2 className="dark:text-white">{chosenTask.task_name.S}</h2>
 
                 <div
                   className={`cursor-pointer  z-30

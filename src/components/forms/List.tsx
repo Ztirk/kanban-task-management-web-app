@@ -14,7 +14,11 @@ interface Props {
   value: BoardDetails["Item"]["column"]["L"][0]["M"]["task"]["L"][0]["M"]["sub_task"]["L"];
 }
 
-const randomShit = ["e.g. Make coffee", "e.g. Drink coffee & smile", "e.g. Workout"];
+const randomShit = [
+  "e.g. Make coffee",
+  "e.g. Drink coffee & smile",
+  "e.g. Workout",
+];
 
 export default function List({ value }: Props) {
   const task = useSelector((state: RootState) => state.task);
@@ -43,7 +47,8 @@ export default function List({ value }: Props) {
       <div
         className={`max-h-[126px]
     overflow-y-auto
-    flex flex-col gap-2`}
+    flex flex-col gap-2
+    `}
       >
         {value ? (
           value.map((v, i) => (
@@ -56,6 +61,8 @@ export default function List({ value }: Props) {
                 className={`h-[40px] w-full
                         border border-[#828FA3]/25
                         px-3
+                        dark:text-white
+                      dark:bg-dark-grey
                         `}
                 value={
                   task.M.sub_task.L.find(

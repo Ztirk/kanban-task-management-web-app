@@ -35,6 +35,8 @@ export default function ReuseList({
           className={`h-[40px] w-full
                   border border-[#828FA3]/25
                   px-3
+                  dark:text-white
+                      dark:bg-dark-grey
                   `}
           value={value}
           id={id}

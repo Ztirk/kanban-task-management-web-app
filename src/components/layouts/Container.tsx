@@ -20,7 +20,7 @@ export default function Container({
       ${
         popUp
           ? `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-            bg-white
+            bg-white 
             z-20
             rounded-md
             flex flex-col gap-5
@@ -28,7 +28,7 @@ export default function Container({
             `
           : ""
       } 
-      ${inputNLabel ? "flex flex-col gap-2" : ""}
+      ${inputNLabel ? "flex flex-col gap-2 dark:border-[#828FA3]" : ""}
       `}
     >
       {children}

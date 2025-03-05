@@ -60,11 +60,11 @@ export default function AddNewTask({ active, onCancel }: Props) {
       />
       <Container
         className={`h-[675px] w-[480px] 
-                    
+                    dark:bg-dark-grey
                     ${active ? "" : "hidden"}`}
         popUp
       >
-        <h2 className={`heading-l`}>Add New Task</h2>
+        <h2 className={`heading-l dark:text-white`}>Add New Task</h2>
         <Container inputNLabel>
           <Label label="Title" htmlFor="title" />
           <Input

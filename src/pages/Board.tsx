@@ -73,7 +73,8 @@ export default function Board() {
       <div
         className={`h-screen 
                  overflow-x-auto
-               bg-light-grey-light-bg`}
+               bg-light-grey-light-bg
+               dark:bg-very-dark-grey-dark-bg`}
       >
         <Header />
         <div
@@ -106,7 +107,7 @@ export default function Board() {
               ))}
               {board.column.L.length ? (
                 <div
-                  className={`bg-[#E9EFFA]
+                  className={`bg-[#E9EFFA] dark:bg-dark-grey
                          text-medium-grey
                          heading-xl
                          flex justify-center items-center

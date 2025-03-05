@@ -17,7 +17,9 @@ export default function Option({ id, value, action, taskId }: Props) {
                     h-[40px]
                     px-3
                     flex items-center
-        
+                    dark:text-medium-grey
+                    dark:bg-very-dark-grey-dark-bg
+                    dark:border-very-dark-grey-dark-bg
       `}
         key={id}
         id={id}

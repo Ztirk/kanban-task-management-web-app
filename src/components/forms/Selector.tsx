@@ -53,7 +53,7 @@ export default function Selector({ value, active, children, required }: Props) {
                         }
                         `}
         >
-          <p>{value}</p>
+          <p className="dark:text-white">{value}</p>
           <img src={toggleSelect ? chevronUp : chevronDown} />
         </div>
         <ul
@@ -61,6 +61,7 @@ export default function Selector({ value, active, children, required }: Props) {
                   w-full
                   bg-white
                   shadow
+                  rounded-[8px]
                   ${toggleSelect ? "" : "hidden"}
     `}
         >

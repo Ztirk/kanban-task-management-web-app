@@ -37,7 +37,7 @@ export default function Task({ task, column, onDragStart }: Props) {
       />
 
       <div
-        className={`bg-white
+        className={`bg-white dark:bg-dark-grey
                     h-[88px] w-[280px]
                     shadow-md
                     rounded-md
@@ -53,7 +53,7 @@ export default function Task({ task, column, onDragStart }: Props) {
         onDragStart={(e) => onDragStart(e, task.task_id.S, column.column_id.S)}
       >
         <h4
-          className={`heading-m 
+          className={`heading-m dark:text-white
                   
       `}
         >

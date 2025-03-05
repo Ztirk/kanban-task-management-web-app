@@ -29,6 +29,8 @@ export default function Input({
                   w-full
                   px-3
                   rounded-sm
+                  dark:bg-dark-grey
+                  dark:text-white
                   ${required ? "border-red" : "border-[#828FA3]/25"}
       `}
         id={id}

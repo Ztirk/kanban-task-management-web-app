@@ -28,7 +28,7 @@ export default function CheckList({
   return (
     <label
       className={`h-[40px] 
-                bg-light-grey-light-bg
+                bg-light-grey-light-bg  dark:bg-very-dark-grey-dark-bg
                 hover:bg-main-purple/25
                 flex items-center gap-4
                 rounded-md
@@ -50,7 +50,8 @@ export default function CheckList({
       />
       <span
         className={`font-bold text-[12px]
-                    ${
+                    dark:text-medium-grey
+                    ${ 
                       checked
                         ? `line-through 
                            text-black/50

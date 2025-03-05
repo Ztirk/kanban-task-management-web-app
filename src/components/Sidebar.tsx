@@ -14,15 +14,15 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="max-mobile:hidden">
+    <div className={"max-[376px]:hidden"}>
       <Container
         className={`h-screen
                    pt-8 pb-10
-                  bg-white
-                  border border-[#979797] 
+                  bg-white dark:bg-dark-grey
+                  border-r border-[#979797] dark:border-[#3E3F4E]
                   shadow-sm
                   flex flex-col
-                  transition-all
+                  transition-[width]
                   whitespace-nowrap
                   ${toggleSidebar ? `w-[300px] ` : `w-0 overflow-hidden`}`}
       >
@@ -51,7 +51,7 @@ export default function Sidebar() {
             className={`heading-m
                       text-medium-grey`}
           >
-            Hide Sidebar eiei
+            Hide Sidebar
           </div>
         </div>
       </Container>

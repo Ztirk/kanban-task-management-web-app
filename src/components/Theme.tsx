@@ -1,17 +1,36 @@
 import sun from "assets/icon-light-theme.svg";
 import moon from "assets/icon-dark-theme.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Theme() {
   const [theme, setTheme] = useState<boolean>(false);
 
   const handleChangeTheme = () => {
     setTheme((prev) => !prev);
+
+    if (localStorage.theme == "light") {
+      localStorage.theme = "dark";
+      document.documentElement.classList.toggle("dark", true);
+    } else {
+      localStorage.theme = "light";
+      document.documentElement.classList.toggle("dark", false);
+    }
   };
+
+  useEffect(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    )
+      setTheme(false);
+    else setTheme(true);
+  }, []);
 
   return (
     <div
       className={`h-[48px] 
+               dark:bg-very-dark-grey-dark-bg
                     flex justify-center items-center gap-4
                     bg-light-grey-light-bg 
                     rounded-md`}

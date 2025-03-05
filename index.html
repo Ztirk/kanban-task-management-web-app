@@ -16,5 +16,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        localStorage.theme = "dark";
+        document.documentElement.classList.toggle("dark", true);
+      } else {
+        localStorage.theme = "light";
+        document.documentElement.classList.toggle("dark", false);
+      }
+    </script>
   </body>
 </html>

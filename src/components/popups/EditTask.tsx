@@ -55,7 +55,8 @@ export default function EditTask({
 
   return (
     <>
-      <Container className={`h-[675px] w-[480px]`} popUp>
+      <Container className={`h-[675px] w-[480px] dark:text-white
+                      dark:bg-dark-grey`} popUp>
         <h2 className={`heading-l`}>Edit Task</h2>
         <Container inputNLabel>
           <Label label="Title" htmlFor="title" />

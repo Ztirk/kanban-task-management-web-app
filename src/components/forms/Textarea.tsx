@@ -1,7 +1,6 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-
 interface Props {
   id: string;
   placeholder: string;
@@ -19,6 +18,7 @@ export default function Textarea({ id, action, placeholder, value }: Props) {
                   resize-none
                   px-3 py-1
                   h-[112px]
+                  dark:bg-dark-grey
     
   `}
       id={id}

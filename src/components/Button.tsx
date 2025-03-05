@@ -26,11 +26,12 @@ export default function Button({ type, onClick, value, disable }: Props) {
       type == "add-new-task"
         ? `bg-main-purple 
            hover:bg-main-purple-hover
-             h-[48px] w-[164px]
+             min-[376px]:h-[48px] min-[376px]:w-[164px] max-[376px]:h-[32px] max-[376px]:w-[48px]
+             max-[376px]:pb-1 max-[376px]:text-[20px]
              text-white
              px-5`
         : type == "add-new-subtask"
-        ? `bg-main-purple/10
+        ? `bg-main-purple/10 dark:bg-white
            text-main-purple
              font-bold text-[13px]
              h-[40px]`
